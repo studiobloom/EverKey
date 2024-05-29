@@ -333,6 +333,7 @@
 				ENABLE_RCPROJECT_COMPILATION = YES;
 				ENABLE_USDZ_COMPILATION = YES;
 				INFOPLIST_FILE = "$(SRCROOT)/EverKey/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -357,6 +358,7 @@
 				ENABLE_RCPROJECT_COMPILATION = YES;
 				ENABLE_USDZ_COMPILATION = YES;
 				INFOPLIST_FILE = "$(SRCROOT)/EverKey/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

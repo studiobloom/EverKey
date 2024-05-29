@@ -21,14 +21,22 @@ class ViewController: UIViewController, ARSessionDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         arView.session.delegate = self
+        arView.automaticallyConfigureSession = false // Disable automatic session configuration
         setupSegmentedControl()
         setupEffectSwitch()
         setupGestureRecognizers()
+        configureARSession()
     }
 
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         applyCurrentEffect()
+    }
+
+    private func configureARSession() {
+        let configuration = ARWorldTrackingConfiguration()
+        configuration.environmentTexturing = .none // Disable environment lighting
+        arView.session.run(configuration)
     }
 
     private func setupSegmentedControl() {
@@ -124,7 +132,7 @@ class ViewController: UIViewController, ARSessionDelegate {
 
     private func setupCameraPlane() {
         let planeMesh = MeshResource.generatePlane(width: 1.0, height: 1.0)
-        let planeMaterial = SimpleMaterial(color: .black, isMetallic: false)
+        let planeMaterial = UnlitMaterial(color: .black)
         let planeEntity = ModelEntity(mesh: planeMesh, materials: [planeMaterial])
 
         // Position the plane far back and scale it to cover the entire screen
@@ -152,7 +160,7 @@ class ViewController: UIViewController, ARSessionDelegate {
 
     // ARSessionDelegate method to detect when tracking is properly established
     func session(_ session: ARSession, didUpdate frame: ARFrame) {
-        if !isPlaneCreated {
+        if (!isPlaneCreated) {
             setupCameraPlane()
             isPlaneCreated = true
         }
